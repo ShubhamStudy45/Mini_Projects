@@ -54,7 +54,7 @@ route.get('/check-availability',(request, response)=>{
 route.post('/add-copie/:id',(request, response)=>{
     const { id } = request.params
     const { rack } = request.body
-    const statement = `insert into copies (id, rack, status )
+    const statement = `insert into copies (book_id, rack, status )
                         values (${id}, ${rack}, 0 )`
     db.execute(statement,(error, data)=>{
         response.send(utils.createResult(error,data))
