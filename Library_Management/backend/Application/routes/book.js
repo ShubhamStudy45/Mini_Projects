@@ -27,4 +27,16 @@ route.post('/add-book',(request, response)=>{
         response.send(utils.createResult(error,data))
     })
 })
+
+//edit book
+route.post('/edit-book/:id',(request,response)=>{
+    const { id } = request.params
+    const { name, author, subject, price } = request.body
+    const statement = `update book set
+                        name='${name}', author = '${author}', subject = '${subject}', price = ${price}
+                        where id = ${id}`
+    db.execute(statement,(error, data)=>{
+        response.send(utils.createResult(error,data))
+    })
+})
 module.exports = route
