@@ -11,6 +11,7 @@ route.get('/',(request, response)=>{
 
 })
 
+//signup
 route.post('/signup',(request, response)=>{
 
     const { firstname, lastname, email, password } = request.body
@@ -27,6 +28,8 @@ route.post('/signup',(request, response)=>{
     })
     
 })
+
+// signin
 route.post('/signin',(request,response)=>{
     
     const { email, password } = request.body
@@ -91,6 +94,7 @@ route.put('/edit-profile/',(request, response)=>{
     })
 })
 
+//change password
 route.patch('/edit-password/',(request, response)=>{
 
     const { oldpassword, newpassword } = request.body
