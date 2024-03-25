@@ -39,4 +39,25 @@ route.post('/edit-book/:id',(request,response)=>{
         response.send(utils.createResult(error,data))
     })
 })
+//Check availability
+route.get('/check-availability',(request, response)=>{
+
+    const { name } = request.body
+    const statement = `select * from book where name = '${name}' and status = 0`
+    db.execute(statement, (error, data)=>{
+        response.send(utils.createResult(error,data))
+    })
+})
+
+
+//add copy book
+route.post('/add-copie/:id',(request, response)=>{
+    const { id } = request.params
+    const { rack } = request.body
+    const statement = `insert into copies (id, rack, status )
+                        values (${id}, ${rack}, 0 )`
+    db.execute(statement,(error, data)=>{
+        response.send(utils.createResult(error,data))
+    })
+})
 module.exports = route
