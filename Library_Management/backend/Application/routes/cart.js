@@ -28,4 +28,22 @@ route.post('/add-item',(request, response)=>{
     })
 })
 
+route.patch('/update-quantity/:id',(request,response)=>{
+    const { id } = request.params
+    const { quantity } = request.body
+    
+    const statement = `update cart set quantity = ${quantity} where id = ${id}`
+
+    db.execute(statement,(error,data)=>{
+        response.send(utils.createResult(error,data))
+    })
+})
+
+route.delete('/delete-item/:id',(request, response)=>{
+    const { id } = request.params
+    const statement = `delete from cart where id = ${id}`
+    db.execute(statement,(error,data)=>{
+        response.send(utils.createResult(error,data))
+    })
+})
 module.exports = route
