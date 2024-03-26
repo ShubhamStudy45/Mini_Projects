@@ -1,10 +1,13 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
+
 const bodyParser = require('body-parser')
 
 //application routes
 const userRouter = require('./routes/user')
 const bookRouter = require('./routes/book')
+const cartRouter = require('./routes/cart')
+const issueBookRouter = require('./routes/issuebook')
 
 const config = require('./config')
 
@@ -39,6 +42,8 @@ app.use((request,response, next)=>{
 })
 app.use('/user/',userRouter)
 app.use('/book',bookRouter)
+app.use('/cart',cartRouter)
+app.use('/issuebook',issueBookRouter)
 app.listen(4000,'0.0.0.0',()=>{
     console.log('server started on port 4000')
 })
